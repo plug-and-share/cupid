@@ -1,0 +1,17 @@
+header {
+	text-align: left;
+	padding: 75px 0px 20px 0px;
+}
+
+.login-box {
+	margin: auto auto auto auto;
+	width: 800px;
+	height: 800px;
+}
+
+.custom-button {
+	width: 250px;
+	background-color:  #e7e7ee;
+}
+
+textarea { resize:vertical; }
