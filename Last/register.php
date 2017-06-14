@@ -93,8 +93,8 @@
 	<body>
 		<!---->
 		<nav class="navbar navbar-default navbar-fixed-top show-scroll">				
-			<div class="container row">					
-				<div class="navbar-header col-md-6 col-sm-6 col-xs-6 col-lg-6">						
+			<div class="container">					
+				<div class="navbar-header">						
 					<a class="navbar-brand" href="./home.php">
 						<span style="vertical-align: middle;font-size: 25px;"><img src="logoS.png" width="30px">cupid</span>
 					</a>						
@@ -104,19 +104,12 @@
 						<span class="icon-bar"></span>
 					</button>
 				</div>					
-				<div class="collapse navbar-collapse col-md-6 col-sm-6 col-xs-6 col-lg-6"  id="menu">
+				<div class="collapse navbar-collapse"  id="menu">
 					<ul class="nav navbar-nav" style="padding: 0px 0px 0px 50px">
 						<li><a href="#">Getting Gtarted</a></li>
 						<li><a href="./documentation.html">Documentation</a></li>
 						<li><a href="https://github.com/plug-and-share/pine/archive/master.zip">Download</a></li>
-						<li class="dropdown">
-						  <a class="dropdown-toggle" data-toggle="dropdown" href="#">DSE<span class="caret"></span></a>
-						  <ul class="dropdown-menu">
-							<li><a href="./new_simulation.php">new simulation</a></li>
-							<li><a href="#">access benchmark</a></li>
-							<li><a href="#">evaluate method</a></li>
-						  </ul>
-						</li>							
+						<li><a href="./newfile.html">Control Panel</a></li>							
 					</ul>		
 					<ul class="nav navbar-nav navbar-right">
 						<li>     
@@ -138,7 +131,7 @@
 		<!-- !!!Working here!!! -->		
 		<div class="containter row">
 			<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">	
-			<div class="login-box col-md-12 col-sm-12 col-xs-12 col-lg-12">
+			<div class="login-box">
 				<header>
 					<img src="logoP.png" width="85%"/>
 					<h4>Join us</h4>		
