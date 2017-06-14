@@ -86,14 +86,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="register.css"/>
+		<link rel="stylesheet" href="home.css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>		
 	</head>
 	<body>
 		<!---->
 		<nav class="navbar navbar-default navbar-fixed-top show-scroll">				
-			<div class="container">					
-				<div class="navbar-header">						
+			<div class="container row">					
+				<div class="navbar-header col-md-6 col-sm-6 col-xs-6 col-lg-6">						
 					<a class="navbar-brand" href="./home.php">
 						<span style="vertical-align: middle;font-size: 25px;"><img src="logoS.png" width="30px">cupid</span>
 					</a>						
@@ -103,7 +104,7 @@
 						<span class="icon-bar"></span>
 					</button>
 				</div>					
-				<div class="collapse navbar-collapse"  id="menu">
+				<div class="collapse navbar-collapse col-md-6 col-sm-6 col-xs-6 col-lg-6"  id="menu">
 					<ul class="nav navbar-nav" style="padding: 0px 0px 0px 50px">
 						<li><a href="#">Getting Gtarted</a></li>
 						<li><a href="./documentation.html">Documentation</a></li>
@@ -135,30 +136,27 @@
 			</div>								
 		</nav>				
 		<!-- !!!Working here!!! -->		
-		<div class="containter">
+		<div class="containter row">
 			<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">	
-			<div class="login-box">
+			<div class="login-box col-md-12 col-sm-12 col-xs-12 col-lg-12">
 				<header>
 					<img src="logoP.png" width="85%"/>
 					<h4>Join us</h4>		
 				</header>
 				<main>
 					<div class="form">
-						<!-- <input class="form-control" type="email" placeholder="e-mail"> -->
 						<input type="email" name="email" class="form-control" placeholder="E-mail" maxlength="40" value="<?php echo $email ?>" />
 						<div>						
 							<span class="text-danger"><?php echo $emailError; ?></span>				
 						</div>					
 					</div>
 					<div class="form">
-						<!--<input class="form-control" type="password" placeholder="password"> -->		
 						<input type="password" name="pass" class="form-control" placeholder="Password" maxlength="100" />						
 						<div>
 							<span class="text-danger"><?php echo $passError; ?></span>			
 						</div>					
 					</div>
 					<div class="form">
-						<!--<input class="form-control" type="password" placeholder="confirm your password">-->
 						<input type="password" name="pass1" class="form-control" placeholder="Confirme your password" maxlength="100" />					
 						<div>
 							<span class="text-danger"><?php echo $pass1Error; ?></span>			
@@ -182,7 +180,7 @@
 		</div>
 		<!---->
 		<nav class="navbar navbar-default navbar-fixed-bottom show-scroll">																		
-			<ul class="nav navbar-nav navbar-right">				
+			<ul class="nav footer navbar-nav navbar-right">				
 				<li><a href="#">terms</a></li>
 				<li><a href="#">privacy</a></li>
 				<li><a href="#">security</a></li>					

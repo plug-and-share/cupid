@@ -26,3 +26,10 @@ p {
 	color: white;
 }
 
+.footer {
+   min-width:100px;
+   position: absolute;
+   top: 2px;
+   right: 0px;
+   height: 50px;
+}
