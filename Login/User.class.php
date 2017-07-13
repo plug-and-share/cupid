@@ -34,8 +34,6 @@ class User{
 			} else {
 			    return "Incorrect Credentials, Try again...";
 			}    
-	 
-
 	}
 }
 

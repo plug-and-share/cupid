@@ -14,8 +14,14 @@ class OverallStatistics {
 		$processing_time = rand(0, 100);
 		$gift_processed = rand(0, 100);
 
-		return "<tbody><tr><tdclass=\"text-left\">NumberAppCollaborate</td><td>$number_app_coll</td></tr><tr><tdclass=\"text-left\">DataGenerated</td><td>$data_generated</td></tr><tr><tdclass=\"text-left\">ProcessingTime</td><td>$processing_time</td></tr><tr><tdclass=\"text-left\">GiftProcessed</td><td>$gift_processed</td></tr></tbody>";
 
+		$statistics = array()
+			array(), // app coll
+			array(), // data generated
+			array(), // processing time
+			array() // gift processed
+		);
+		return $statistics;
 	}
 
 };

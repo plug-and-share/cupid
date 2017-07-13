@@ -2,6 +2,8 @@
 	
 	if ( isset($_POST["createAcc"]) ) {
 
+		require "../Control/ControlRegister.php";
+
 		$email = trim($_POST['email']);
 		$email = strip_tags($email);
 		$email = htmlspecialchars($email);
@@ -16,7 +18,7 @@
 		
 		$user = new Control($email, $pass,$pass1);
 
-		$errovalidacao = $user->LogarUsuario();		
+		$errovalidacao = $user->InserirUsuario();		
 		header("Location: ../Home/home.php");
 	}
 ?>
@@ -81,22 +83,13 @@
 				</header>
 				<main>
 					<div class="form">
-						<input type="email" name="email" class="form-control" placeholder="E-mail" maxlength="40" value="<?php echo $email ?>" />
-						<div>						
-							<span class="text-danger"><?php echo $emailError; ?></span>				
-						</div>					
+						<input type="email" name="email" class="form-control" placeholder="Email" maxlength="40"/>				
 					</div>
 					<div class="form">
-						<input type="password" name="pass" class="form-control" placeholder="Password" maxlength="100" />						
-						<div>
-							<span class="text-danger"><?php echo $passError; ?></span>			
-						</div>					
+						<input type="password" name="pass" class="form-control" placeholder="Password" maxlength="100" />	
 					</div>
 					<div class="form">
-						<input type="password" name="pass1" class="form-control" placeholder="Confirme your password" maxlength="100" />					
-						<div>
-							<span class="text-danger"><?php echo $pass1Error; ?></span>			
-						</div>						
+						<input type="password" name="pass1" class="form-control" placeholder="Confirme your password" maxlength="100" />											
 					</div>		
 					<div class="form">
 						<label for="university">Select your university:</label>

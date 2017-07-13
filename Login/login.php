@@ -2,7 +2,7 @@
 
 if( isset($_POST['btn-login']) ) { 
 	
-	require "Control.php";
+	require "../Control/ControlLogin.php";
 
 	$email = trim($_POST['email']);
 	$email = strip_tags($email);

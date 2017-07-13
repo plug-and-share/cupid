@@ -8,15 +8,9 @@ class ControlPanel {
 	}
 
 	public function build( ){
-		$row = "";
 		$machine_id = 5;
 		$state = "dinheirinho";
-		$aplication_id = 666;
-		for( $i = 0; $i < 5; $i++ ){
-			$row .= "<tr><td>$machine_id</td><td>$state</td><td>$aplication_id</td><td class=\"col-md-1\"><button type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-pause\" aria-hidden=\"true\"></span></button></td><td class=\"col-md-1\"><button type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-play\" aria-hidden=\"true\"></span></button></td><td class=\"col-md-1\"><button type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-stop\" aria-hidden=\"true\"></span></button></td></tr>";
-			$row .= "SELECT FROM Machine WHERE ControlPanelID == $i";
-		}
-		return $row;
+		$aplication_id = 666;	
 	}
 
 	public function addMachine( $ip, $key ){
