@@ -15,11 +15,8 @@ class OverallStatistics {
 		$gift_processed = rand(0, 100);
 
 
-		$statistics = array()
-			array(), // app coll
-			array(), // data generated
-			array(), // processing time
-			array() // gift processed
+		$statistics = array(
+			rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100) 
 		);
 		return $statistics;
 	}

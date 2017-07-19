@@ -1,16 +1,19 @@
 <?php
 
-class ControlPanel {
+class Control_panel {
 	private $profile_id;
 
 	public function __construct( $profile_id ){
 		$this->profile_id = $profile_id;
 	}
 
-	public function build( ){
-		$machine_id = 5;
-		$state = "dinheirinho";
-		$aplication_id = 666;	
+	public function build(){
+		$data = array(
+			array(5, "dinheirinho", 666),
+			array(2, "pobrinnho", 6123),
+			array(4, "dividazinha", 6123)
+		);
+		return $data;
 	}
 
 	public function addMachine( $ip, $key ){

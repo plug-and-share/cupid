@@ -1,16 +1,15 @@
-<? namespace panel php 
+<?php 
  
-class Control{
+class ControlPanel{
 
 	private $controlPanelModel;
 
- 	public function __constructor( $profile_id ){
-		$this->controlPanelModel = new ControlPanel( $profile_id );
-	 	require "../ControlPanel/ControlPanel.class.php";
-
+ 	public function __construct ( $profile_id ){
+ 		require "../ControlPanel/ControlPanel.class.php";
+		$this->controlPanelModel = new Control_panel( $profile_id );
 	}
 
-	public function ControlPanel(){		 
+	public function ControlP(){		 
 	 	$data = $this->controlPanelModel->build();
 		return $data; // arrumar a pagina do PHP para receber o retorno dessa funcao 	
 	}

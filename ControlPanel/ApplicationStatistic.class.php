@@ -1,9 +1,9 @@
 <?php
 
-class ApplicationStatistic {
+class Application_statistic {
 	private $profile_id;
 	
-	public function __constructor(){
+	public function __construct( $profile_id ){
 		$this->profile_id = $profile_id;
 	}
 
@@ -16,14 +16,11 @@ class ApplicationStatistic {
 		// $num_machines_pause = rand( 0 , 100 );
 		// $num_machines_stop = rand( 0 , 100 );
 
-		$statistics = array()
-			array(), // process
-			array(), // remain process time
-			array(), // processing time
-			array(), // data generated
-			array(), // run
-			array(), // pause
-			array() // stop
+		$statistics = array
+		(
+			array(rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100)),
+			array(rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100)),
+			array(rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100))
 		);
 		return $statistics;
 	}

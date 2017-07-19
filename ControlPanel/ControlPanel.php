@@ -1,48 +1,23 @@
 <?php
+	session_start();
+	$_SESSION['user'] = true;
 
 	require "../Control/ControlControlPanel.php";
 	require "../Control/ControlOverallStatistics.php";
 	require "../Control/ControlApplicationStatistic.php";
 
+	if(isset($_SESSION['user'])){
+		$panel = new ControlPanel( $_SESSION['user'] ); // Criar um metodo para pegar id
+		$statistic = new ControlOverAll( $_SESSION['user'] );
+		$application = new ControlApp( $_SESSION['user'] );
 
-	$panel = new panel::Control( $_SESSION['user'] ); // Criar um metodo para pegar id
-	$statistic = new statistic::Control( $_SESSION['user'] );
-	$application = new application::Control( $_SESSION['user'] );
+		$app_data = $application->ApplicationStatistic();
+	    $stats_data = $statistic->OverAllStatistics();
+		$panel_data = $panel->ControlP();
+	}else{
+		header("Location: ../Home/home.php");
+	}
 
-	$app_data = $application->ApplicationStatistic();
-	$stats_data = $statistic->OverAllStatistics();
-	$panel_data = $panel->ControlPanel();
-
-	// app_data = [
-	// 	  progress1, remain1, proc1, data1, run1, pause1, stop1
-	// 	  progress2, remain2, proc2, data2, run2, pause2, stop2
-	//    ...
-	// 	  progressN, remainN, procN, dataN, runN, pauseN, stopN
-	// ]
-	foreach ( $app_data as $data ) {
-		echo "<div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 class=\"panel-title\"><a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\"><b>#App1</b></a></h4> </div><div id=\"collapseOne\" class=\"panel-collapse collapse in\"><div class=\"panel-body\"><table class=\"table table-striped\"><tr><td class=\"text-left\">Progress</td><td class=\"text-left\">$data[0]</td></tr><tr><td class=\"text-left\">Remain Process Time</td><td class=\"text-left\">$data[1]</td></tr><tr><td class=\"text-left\">Processing Time</td><td class=\"text-left\">$data[2]</td></tr><tr><td class=\"text-left\">Data Generated</td><td class=\"text-left\">$data[3]</td></tr><tr><td class=\"text-left\">Number of Machines Running</td><td class=\"text-left\">$data[4]</td></tr><tr><td class=\"text-left\">Number of Machines Paused</td><td class=\"text-left\">$num_machines_pause</td></tr><tr><td class=\"text-left\">Number of Machine Stopped</td><td class=\"text-left\">$data[5]</td></tr></table></div></div></div>";
-   	}
-
-   	/*
-	statistic = [
-		n_app_collaborated1, data_generated1, processing_time1, gift_processed1
-		n_app_collaborated2, data_generated2, processing_time2, gift_processed2
-		...
-		n_app_collaboratedN, data_generatedN, processing_timeN, gift_processedN
-	]
-   	*/
-	foreach ( $statistic_data as $data ) {
-		echo "<div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 class=\"panel-title\"><a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\"><b>#App1</b></a></h4> </div><div id=\"collapseOne\" class=\"panel-collapse collapse in\"><div class=\"panel-body\"><table class=\"table table-striped\"><tr><td class=\"text-left\">Progress</td><td class=\"text-left\">$data[0]</td></tr><tr><td class=\"text-left\">Remain Process Time</td><td class=\"text-left\">$data[1]</td></tr><tr><td class=\"text-left\">Processing Time</td><td class=\"text-left\">$data[2]</td></tr><tr><td class=\"text-left\">Data Generated</td><td class=\"text-left\">$data[3]</td></tr><tr><td class=\"text-left\">Number of Machines Running</td><td class=\"text-left\">$data[4]</td></tr><tr><td class=\"text-left\">Number of Machines Paused</td><td class=\"text-left\">$num_machines_pause</td></tr><tr><td class=\"text-left\">Number of Machine Stopped</td><td class=\"text-left\">$data[5]</td></tr></table></div></div></div>";
-   	}
-
-   	/*
-	panel = [
-		machine_id1, state1, application_id1
-		machine_id2, state2, application_id2
-		...
-		machine_idN, stateN, application_idN
-	]
-   	*/
 ?>
 
 <!DOCTYPE HTML>
@@ -114,86 +89,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>0</td>
-								<td>paused</td>
-								<td>0</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-									</button>
-								</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-									</button>
-								</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>0</td>
-								<td>paused</td>
-								<td>0</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-									</button>
-								</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-									</button>
-								</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>0</td>
-								<td>paused</td>
-								<td>0</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-									</button>
-								</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-									</button>
-								</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>0</td>
-								<td>paused</td>
-								<td>0</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-									</button>
-								</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-									</button>
-								</td>
-								<td class="col-md-1">
-									<button type="button" class="btn btn-default" aria-label="Left Align">
-										<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
-									</button>
-								</td>
-							</tr>													
+							<?php 
+								foreach ( $panel_data as $data ) {
+									echo "<tr><td>$data[0]</td><td>$data[1]</td><td>$data[2]</td><td class=\"col-md-1\"><button type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-pause\" aria-hidden=\"true\"></span></button></td><td class=\"col-md-1\"><button type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-play\" aria-hidden=\"true\"></span></button></td><td class=\"col-md-1\"><button type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-stop\" aria-hidden=\"true\"></span></button></td></tr>";
+								}
+							?>
 						</tbody>
 					</table>
 				
@@ -221,22 +121,9 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="text-left">Number App Collaborate</td>
-									<td>500</td>
-								</tr>
-								<tr>
-									<td class="text-left">Data Generated</td>
-									<td>500</td>
-								</tr>
-								<tr>
-									<td class="text-left">Processing Time</td>
-									<td>500</td>
-								</tr>
-								<tr>
-									<td class="text-left">Gift Processed</td>
-									<td>500</td>
-								</tr>												
+								<?php
+									echo "<tr><td class=\"text-left\">Number App Collaborate</td><td>$stats_data[0]</td></tr><tr><td class=\"text-left\">Data Generated</td><td>$stats_data[1]</td></tr><tr><td class=\"text-left\">Processing Time</td><td>$stats_data[2]</td></tr><tr><td class=\"text-left\">Gift Processed</td><td>$stats_data[3]</td></tr>";
+								?>												
 							</tbody>
 						</table>
 					</center>
@@ -244,90 +131,12 @@
 			</div>
 			<div class="row">
 				<h3><b>Application Statistic</b></h3>
-				<hr>
 	            <div class="panel-group col-md-12 col-sm-12 col-xs-12 col-lg-12" id="accordion">
-                	<div class="panel panel-default">
-	                    <div class="panel-heading">
-	                        <h4 class="panel-title">
-	                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><b>#App1</b></a>
-	                        </h4> 
-	                    </div>
-	    				<div id="collapseOne" class="panel-collapse collapse in">
-	                        <div class="panel-body">
-	                            <table class="table table-striped">
-	                                <tr>
-	                                    <td class="text-left">Progress</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Remain Process Time</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Processing Time</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Data Generated</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Number of Machines Running</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Number of Machines Paused</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Number of Machine Stopped</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                             </table>
-	                        </div>
-	                	</div>
-	                </div>
-	                <div class="panel panel-default">
-	                    <div class="panel-heading">
-	                        <h4 class="panel-title">
-	                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><b>#App2</b></a>
-	                        </h4> 
-	                    </div>
-	    				<div id="collapseTwo" class="panel-collapse collapse in">
-	                        <div class="panel-body">
-	                            <table class="table table-striped">
-	                                <tr>
-	                                    <td class="text-left">Progress</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Remain Process Time</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Processing Time</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Data Generated</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Number of Machines Running</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Number of Machines Paused</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                                <tr>
-	                                    <td class="text-left">Number of Machines Stopped</td>
-	                                    <td class="text-left">500</td>
-	                                </tr>
-	                             </table>
-	                        </div>
-	                	</div>
-	                </div>
+                	<?php 
+						foreach ( $app_data as $data ) {
+							echo "<div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 class=\"panel-title\"><a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\"><b>#App1</b></a></h4> </div><div id=\"collapseOne\" class=\"panel-collapse collapse in\"><div class=\"panel-body\"><table class=\"table table-striped\"><tr><td class=\"text-left\">Progress</td><td class=\"text-left\">$data[0]</td></tr><tr><td class=\"text-left\">Remain Process Time</td><td class=\"text-left\">$data[1]</td></tr><tr><td class=\"text-left\">Processing Time</td><td class=\"text-left\">$data[2]</td></tr><tr><td class=\"text-left\">Data Generated</td><td class=\"text-left\">$data[3]</td></tr><tr><td class=\"text-left\">Number of Machines Running</td><td class=\"text-left\">$data[4]</td></tr><tr><td class=\"text-left\">Number of Machines Paused</td><td class=\"text-left\">$data[5]</td></tr><tr><td class=\"text-left\">Number of Machine Stopped</td><td class=\"text-left\">$data[6]</td></tr></table></div></div></div>";
+					   	}
+                	?>
                	</div>
             </div>
 			</div>

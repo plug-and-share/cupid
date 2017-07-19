@@ -1,6 +1,6 @@
-<? namespace statistic php 
+<?php 
  
-class Control{
+class ControlOverAll{
 
 	private $profile_id;
 
