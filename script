@@ -18,7 +18,7 @@ USE `mydb` ;
 -- Table `mydb`.`User`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`User` (
-  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `university` VARCHAR(50) NULL,
@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`OverAllStatistics`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`OverAllStatistics` (
-  `OAS_id` INT NOT NULL AUTO_INCREMENT,
+  `OAS_id` INT NOT NULL,
   `number_app_coll` INT NULL,
   `data_generated` INT NULL,
   `processing_time` INT NULL,
@@ -50,7 +50,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`ControlPanel`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`ControlPanel` (
-  `CP_id` INT NOT NULL AUTO_INCREMENT,
+  `CP_id` INT NOT NULL,
   `state` INT NULL,
   `app_id` INT NULL,
   `machine_id` INT NULL,
@@ -69,11 +69,17 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Application`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Application` (
-  `app_id` INT NOT NULL AUTO_INCREMENT,
+  `app_id` INT NOT NULL,
   `user_id` INT NOT NULL,
+  `progress` INT NULL,
+  `remain_process_time` INT NULL,
+  `data_generated` INT NULL,
+  `num_machines_run` INT NULL,
+  `num_machines_pause` INT NULL,
+  `num_machines_stop` INT NULL,
   PRIMARY KEY (`app_id`),
   INDEX `user_id_idx` (`user_id` ASC),
-  CONSTRAINT `user_identification`
+  CONSTRAINT `user_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `mydb`.`User` (`user_id`)
     ON DELETE NO ACTION

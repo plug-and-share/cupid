@@ -11,7 +11,7 @@ class Control{
 
 	public function LogarUsuario(){
 			 
-			 require "../Control/User.class.php";
+			 require "../Login/User.class.php";
 			 $user = new User($this->email, $this->password);
 			 $validacoes = $user->Login();
 		return $validacoes;
