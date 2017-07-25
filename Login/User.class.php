@@ -22,6 +22,7 @@ class User{
 			  
 			if(empty($this->password)){
 			   return "Please enter your password.";
+<<<<<<< HEAD
 			}
 
 			$this->email = mysqli_real_escape_string($db, $this->email);
@@ -37,6 +38,18 @@ class User{
 				return $value;
 			else
 				return true;				
+=======
+			  }
+
+			$password = hash('sha256', $pass); // password hashing using SHA256
+			require_once "../Connection/dbconnect.php";
+	 		$res=mysql_query("SELECT user_id, password FROM User WHERE email='$email'");
+	 		$row=mysql_fetch_array($res);
+	 		$count = mysql_num_rows($res); // if pass correct it returns must be 1 row
+			return true;	
+			
+			// return "Incorrect Credentials, Try again...";    
+>>>>>>> c39c0b63e4e394fb954438d22e3346fe9285ee0d
 	}
 }
 
