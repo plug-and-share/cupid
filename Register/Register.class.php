@@ -5,16 +5,17 @@ class Register{
 	private $email, $password, $password1;
 
 
- 	public function __constructor( $email, $password, $password1 ){
+ 	public function __construct ( $email, $password, $password1 ){
 		$this->email = $email;
 		$this->password = $password;
 		$this->password1 = $password1;
 	}
 
-	public function Register(){
-			 
+	public function Registrar(){
+		require_once "../Connection/dbconnect.php";
+
 		if(empty($this->email)){
-		  return "Please enter your email address.";
+		  return "Please enter valid email address.";
 
 		} else if ( !filter_var($this->email,FILTER_VALIDATE_EMAIL) ) {
 		  return "Please enter valid email address.";
@@ -27,22 +28,28 @@ class Register{
 		if(strcmp($this->password,$this->password1) != 0){
 		  return "Please enter your password.";
 		}
- 		$password = hash('sha256', $pass); // password hashing using SHA256
 
- 		$res=mysql_query("INSERT INTO users(userId,userEmail,userPass) VALUES(NULL,'$email','$password')");
- 		$row=mysql_fetch_array($res);
- 		$count = mysql_num_rows($res); // if pass correct it returns must be 1 row
-		if ($res) {
-			$errTyp = "success";
-			$errMSG = "Successfully registered, you may login now";
-			unset($email);
-			unset($pass);
-			return true;
-		} else {
-			$errTyp = "danger";
-			$errMSG = "Something went wrong, try again later...";	
-			return false;
-		}	
+		$this->email = mysqli_real_escape_string($db, $this->email);
+		$this->password = mysqli_real_escape_string($db, $this->password);
+		$this->password1 = mysqli_real_escape_string($db, $this->password1);
+		
+		$sql = "SELECT email FROM mydb.User WHERE email='$this->email'";
+		$result = mysqli_query($db,$sql);
+		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+		 
+		if(mysqli_num_rows($result) == 1){
+			return false;			
+		}else{
+			$this->password = md5($this->password);
+		 	$query = mysqli_query($db, "INSERT INTO mydb.User(email, password, university)VALUES ('$this->email', '$this->password', 'UNIOESTE')");
+			if($query){
+				unset($this->email);
+				unset($this->password);
+				unset($this->password1);
+				return true;
+			}else
+				return false;
+			}
 	}
 
 }

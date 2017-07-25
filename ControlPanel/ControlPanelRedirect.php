@@ -3,7 +3,7 @@
 	if (isset($_SESSION['user'])) {
 		header("Location: ControlPanelLogin.html");
 	 } else {
-	 	header("Location: ControlPanel.html");
+	 	header("Location: ../Home/home.php");
 	 }
 	exit;
 ?>

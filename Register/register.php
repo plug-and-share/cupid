@@ -5,21 +5,17 @@
 		require "../Control/ControlRegister.php";
 
 		$email = trim($_POST['email']);
-		$email = strip_tags($email);
-		$email = htmlspecialchars($email);
-		
 		$pass = trim($_POST['pass']);
-		$pass = strip_tags($pass);
-		$pass = htmlspecialchars($pass);
-
 		$pass1 = trim($_POST['pass1']);
-		$pass1 = strip_tags($pass1);
-		$pass1 = htmlspecialchars($pass1);
 		
 		$user = new Control($email, $pass,$pass1);
 
-		$errovalidacao = $user->InserirUsuario();		
-		header("Location: ../Home/home.php");
+		$errovalidacao = $user->InserirUsuario();
+		
+		if($errovalidacao)		
+			header("Location: ../Home/home.php");
+		else
+			echo $errovalidacao;
 	}
 ?>
 

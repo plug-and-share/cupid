@@ -8,16 +8,27 @@ class Control_panel {
 	}
 
 	public function build(){
-		$data = array(
-			array(5, "dinheirinho", 666),
-			array(2, "pobrinnho", 6123),
-			array(4, "dividazinha", 6123)
-		);
-		return $data;
+		define('DB_SERVER', 'localhost:3306');
+		define('DB_USERNAME', 'root');
+		define('DB_PASSWORD', 'Omap2014');
+		define('DB_DATABASE', 'mydb');
+		$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+		$query1 = "SELECT machine_id,state,app_id FROM mydb.ControlPanel WHERE user_id = $this->profile_id";
+		$result = mysqli_query($db, $query1) or die ('Error');
+		while($row = mysqli_fetch_array($result)) {
+				$rows[] = $row;
+		}
+		return $rows;
 	}
 
-	public function addMachine( $ip, $key ){
-		echo "INSERT INTO Machine( INT ip ) VALUE( $ip );";
+	public function AddMachine($ip){
+		define('DB_SERVER', 'localhost:3306');
+		define('DB_USERNAME', 'root');
+		define('DB_PASSWORD', 'Omap2014');
+		define('DB_DATABASE', 'mydb');
+		$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+		$query = mysqli_query($db, "INSERT INTO mydb.ControlPanel(state, app_id, machine_id, user_id, IP) VALUES (0, 0, 1, $this->profile_id, '$ip')");
+		header("Location: ../Home/home.php");
 	}
 
 	public function removeMachine( $machine_id ){
