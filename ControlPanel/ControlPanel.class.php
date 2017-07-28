@@ -27,7 +27,11 @@ class Control_panel {
 		define('DB_PASSWORD', 'Omap2014');
 		define('DB_DATABASE', 'mydb');
 		$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+<<<<<<< HEAD
 		$query = mysqli_query($db, "INSERT INTO mydb.ControlPanel(state, app_id, user_id, IP) VALUES (0, 0, $this->profile_id, '$ip')");
+=======
+		$query = mysqli_query($db, "INSERT INTO mydb.ControlPanel(state, app_id, machine_id, user_id, IP) VALUES (0, 0, 1, $this->profile_id, '$ip')");
+>>>>>>> 2c31058e0458658f4ce58b80a6c986730596ac91
 		header("Location: ../Home/home.php");
 	}
 

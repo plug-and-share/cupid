@@ -62,29 +62,52 @@
 	<body>
 	<script>
 		function addMachine() {
+<<<<<<< HEAD
 			var ip = document.getElementById('ipTextBox').value;
 			$.ajax( {type:'POST',
 					 url:'ControlPanel.php',
 					 data:{add:ip}})
+=======
+			<?php 
+
+				$b = $_POST['a']; 
+				if(isset($_POST['a'])){
+					$panel = new ControlPanel( $_SESSION['user'] );
+					$panel_data = $panel->AddMachine( $b );
+				}
+				echo "FODEU";
+
+			?>
+			var ip = document.getElementById('addMachine').value = <?php $b; ?>;
+>>>>>>> 2c31058e0458658f4ce58b80a6c986730596ac91
 		}
 
 		function rmMachine() {
 			var machineId = document.getElementById("machineIDTextBox").value;
+<<<<<<< HEAD
 			$.ajax( {type:'POST',
 					 url:'ControlPanel.php',
 					 data:{rm:machineId}})
+=======
+			alert(machineId);
+>>>>>>> 2c31058e0458658f4ce58b80a6c986730596ac91
 		}
 
 		function coll() {
 			var machineId = document.getElementById("machineID2TextBox").value;
 			var appId = document.getElementById("appIDTextBox").value;
+<<<<<<< HEAD
 			$.ajax( {type:'POST',
 					 url:'ControlPanel.php',
 					 data:{coll:machineId, app:appId}})
+=======
+			alert(machineId + " " + appId);
+>>>>>>> 2c31058e0458658f4ce58b80a6c986730596ac91
 		}
 
 		function descoll() {
 			var machineId = document.getElementById("machineID3TextBox").value;
+<<<<<<< HEAD
 			$.ajax( {type:'POST',
 					 url:'ControlPanel.php',
 					 data:{dcoll:machineId}})
@@ -107,6 +130,10 @@
 					 url:'ControlPanel.php',
 					 data:{startM:machineId}})	
 		}				
+=======
+			alert("machineId");
+		}
+>>>>>>> 2c31058e0458658f4ce58b80a6c986730596ac91
 	</script>
 		<div class="container">
 			<div class="row">
@@ -163,6 +190,7 @@
 						</thead>
 						<tbody>
 							<?php
+<<<<<<< HEAD
 								foreach ($panel_data as $other_data) {
 										$state_name = "";
 
@@ -177,6 +205,11 @@
 										}
 
 										echo "<tr><td>".$other_data[0]."</td><td>".$state_name."</td><td>".$other_data[2]."</td><td class=\"col-md-1\"><button onclick=\"pauseMachine(".$other_data[0].");\" type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-pause\" aria-hidden=\"true\"></span></button></td><td class=\"col-md-1\"><button onclick=\"startMachine(".$other_data[0].");\" type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-play\" aria-hidden=\"true\"></span></button></td><td class=\"col-md-1\"><button  onclick=\"stopMachine(".$other_data[0].");\" type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-stop\" aria-hidden=\"true\"></span></button></td></tr>";
+=======
+
+								foreach ($panel_data as $other_data) {
+										echo "<tr><td>".$other_data[0]."</td><td>".$other_data[1]."</td><td>".$other_data[2]."</td><td class=\"col-md-1\"><button type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-pause\" aria-hidden=\"true\"></span></button></td><td class=\"col-md-1\"><button type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-play\" aria-hidden=\"true\"></span></button></td><td class=\"col-md-1\"><button type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"><span class=\"glyphicon glyphicon-stop\" aria-hidden=\"true\"></span></button></td></tr>";
+>>>>>>> 2c31058e0458658f4ce58b80a6c986730596ac91
 								}
 							?>
 						</tbody>
@@ -197,6 +230,7 @@
 						  </button>
 						  
 						  <!-- [+] -->
+<<<<<<< HEAD
 						<div class="modal fade" id="addMachine" role="dialog">
 					    	<div class="modal-dialog modal-sm">
 					      		<div class="modal-content">
@@ -268,6 +302,80 @@
 						    </div>
 						 </div>
 					</div>
+=======
+						  <div class="modal fade" id="addMachine" role="dialog">
+						    <div class="modal-dialog modal-sm">
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <h4 class="modal-title">Add new machine</h4>
+						        </div>
+						        <div class="modal-body">
+						          <label>Insert machine IP<input id="ipTextBox"></input></label>
+						        </div>
+						        <div class="modal-footer">
+						          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="addMachine()">ADD</button>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						  
+						  <!-- [-] -->
+						  <div class="modal fade" id="rmMachine" role="dialog">
+						    <div class="modal-dialog modal-sm">
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <h4 class="modal-title">Remove machine</h4>
+						        </div>
+						        <div class="modal-body">
+						          <label>Insert machine ID<input id="machineIDTextBox"></input></label>
+						        </div>
+						        <div class="modal-footer">
+						          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="rmMachine()">REMOVE</button>
+						        </div>
+						      </div>
+						    </div>
+						  </div>  
+
+						  <!-- [collaborate] -->
+						  <div class="modal fade" id="collaborate" role="dialog">
+						    <div class="modal-dialog modal-sm">
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <h4 class="modal-title">Collaborate</h4>
+						        </div>
+						        <div class="modal-body">
+						          <label>Insert machine ID<input id="machineID2TextBox"></input></label>
+						          <label>Insert application ID<input id="appIDTextBox"></input></label>
+						        </div>
+						        <div class="modal-footer">
+						          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="coll()">COLLABORATE</button>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+
+						  <!-- [descollaborate] -->
+						  <div class="modal fade" id="descollaborate" role="dialog">
+						    <div class="modal-dialog modal-sm">
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <h4 class="modal-title">Descollaborate</h4>
+						        </div>
+						        <div class="modal-body">
+						          <label>Insert machine ID<input id="machineID3TextBox"></input></label>
+						        </div>
+						        <div class="modal-footer">
+						          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="descoll()">DESCOLLABORATE</button>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+>>>>>>> 2c31058e0458658f4ce58b80a6c986730596ac91
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
 					<h3><center><b>Overall Statistics</b></center></h3>

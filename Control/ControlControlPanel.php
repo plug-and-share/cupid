@@ -13,12 +13,21 @@ class ControlPanel{
 	public function ControlP(){		 
 		$controlPanelModel = new Control_panel( $this->profile_id );
 	 	$data = $controlPanelModel->build();
+<<<<<<< HEAD
 		return $data;
 	}
 
 	public function add_Machine( $ip ){
 		$controlPanelModel = new Control_panel( $this->profile_id );
 		$result = $controlPanelModel->AddMachine($ip); 
+=======
+		return $data; // arrumar a pagina do PHP para receber o retorno dessa funcao 	
+	}
+
+	public function addMachine( $ip ){
+		$controlPanelModel = new Control_panel( $this->profile_id );
+		$result = $controlPanelModel->AddMachine($ip); // falta colocar um dialogo para receber esses valores
+>>>>>>> 2c31058e0458658f4ce58b80a6c986730596ac91
 		return $result;
 	}
 
@@ -34,6 +43,7 @@ class ControlPanel{
 		return $result;
 	}
 
+<<<<<<< HEAD
 	public function DescollApp( $machine_id ){
 		$controlPanelModel = new Control_panel( $profile_id );
 		$result = $controlPanelModel->descollaborateApp( $machine_id );
@@ -55,6 +65,11 @@ class ControlPanel{
 	public function pauseMachine( $machine_id ){
 		$controlPanelModel = new Control_panel( $profile_id );
 		$result = $controlPanelModel->pause( $machine_id );
+=======
+	public function DescollApp(){
+		$controlPanelModel = new Control_panel( $profile_id );
+		$result = $controlPanelModel->descollaborateApp( $application_id, $machine_id );
+>>>>>>> 2c31058e0458658f4ce58b80a6c986730596ac91
 		return $result;
 	}
 }
