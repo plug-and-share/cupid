@@ -3,7 +3,7 @@
 	session_start();
 	if (isset($_SESSION['user'])) {
 		header("Location: homelogin.html");
-	 } else {
+	 }else {
 	 	header("Location: home.html");
 	 }
 	exit;

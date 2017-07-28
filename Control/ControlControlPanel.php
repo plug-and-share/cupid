@@ -3,34 +3,58 @@
 class ControlPanel{
 
 	private $controlPanelModel;
+	private $profile_id;
 
  	public function __construct ( $profile_id ){
+ 		$this->profile_id = $profile_id;
  		require "../ControlPanel/ControlPanel.class.php";
-		$this->controlPanelModel = new Control_panel( $profile_id );
 	}
 
 	public function ControlP(){		 
-	 	$data = $this->controlPanelModel->build();
-		return $data; // arrumar a pagina do PHP para receber o retorno dessa funcao 	
+		$controlPanelModel = new Control_panel( $this->profile_id );
+	 	$data = $controlPanelModel->build();
+		return $data;
 	}
 
-	public function AddMachine( $ip, $key ){
-		$result = $this->controlPanelModel->addMachine($ip, $key); // falta colocar um dialogo para receber esses valores
+	public function add_Machine( $ip ){
+		$controlPanelModel = new Control_panel( $this->profile_id );
+		$result = $controlPanelModel->AddMachine($ip); 
 		return $result;
 	}
 
 	public function RMMachine( $machine_id ){
-		$result = $this->controlPanelModel->removeMachine( $machine_id );
+		$controlPanelModel = new Control_panel( $profile_id );
+		$result = $controlPanelModel->removeMachine( $machine_id );
 		return $result;
 	}
 
 	public function CollApp( $application_id, $machine_id ){
-		$result = $this->controlPanelModel->collaborateApp( $application_id, $machine_id );
+		$controlPanelModel = new Control_panel( $profile_id );
+		$result = $controlPanelModel->collaborateApp( $application_id, $machine_id );
 		return $result;
 	}
 
-	public function DescollApp(){
-		$result = $this->controlPanelModel->descollaborateApp( $application_id, $machine_id );
+	public function DescollApp( $machine_id ){
+		$controlPanelModel = new Control_panel( $profile_id );
+		$result = $controlPanelModel->descollaborateApp( $machine_id );
+		return $result;
+	}
+
+	public function startMachine( $machine_id ){
+		$controlPanelModel = new Control_panel( $profile_id );
+		$result = $controlPanelModel->start( $machine_id );
+		return $result;
+	}
+
+	public function stopMachine( $machine_id ){
+		$controlPanelModel = new Control_panel( $profile_id );
+		$result = $controlPanelModel->stop( $machine_id );
+		return $result;
+	}	
+
+	public function pauseMachine( $machine_id ){
+		$controlPanelModel = new Control_panel( $profile_id );
+		$result = $controlPanelModel->pause( $machine_id );
 		return $result;
 	}
 }

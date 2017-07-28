@@ -4,20 +4,15 @@
 	error_reporting( ~E_DEPRECATED & ~E_NOTICE );
 	
 	
-	define('DBHOST', 'localhost');
-	define('DBUSER', 'root');
-	define('DBPASS', 'Omap2014');
-	define('DBNAME', 'dbcupid');
+	define('DB_SERVER', 'localhost:3306');
+	define('DB_USERNAME', 'root');
+	define('DB_PASSWORD', 'Omap2014');
+	define('DB_DATABASE', 'mydb');
+ 
+	$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 	
-	$conn = mysql_connect(DBHOST,DBUSER,DBPASS);
-	$dbcon = mysql_select_db(DBNAME);
-	
-	if ( !$conn ) {
-		die("Connection failed : " . mysql_error());
+	if ( !$db ) {
+		die("Connection failed : " .mysqli_connect_error());
 	}
 	
-	if ( !$dbcon ) {
-		die("Database Connection failed : " . mysql_error());
-	}
-
-
+?>

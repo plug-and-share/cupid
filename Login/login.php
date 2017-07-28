@@ -1,22 +1,22 @@
 <?php
 
+
 if( isset($_POST['btn-login']) ) { 
 	
 	require "../Control/ControlLogin.php";
 
 	$email = trim($_POST['email']);
-	$email = strip_tags($email);
-	$email = htmlspecialchars($email);
-
 	$pass = trim($_POST['pass']);
-	$pass = strip_tags($pass);
-	$pass = htmlspecialchars($pass);
 
 	$user = new Control($email, $pass);
 
 	$errovalidacao = $user->LogarUsuario();		
-	header("Location: ../Home/home.php");
-} 
+	
+	if($errovalidacao){
+	 	header("Location: ../Home/home.php");
+	}else
+		header("Location: ../Login/login.php");
+	}
 ?>
 
 <!DOCTYPE HTML>

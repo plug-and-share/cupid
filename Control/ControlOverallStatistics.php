@@ -4,7 +4,7 @@ class ControlOverAll{
 
 	private $profile_id;
 
- 	public function __constructor( $profile_id ){
+ 	public function __construct( $profile_id ){
 		$this->profile_id = $profile_id;
 	}
 
